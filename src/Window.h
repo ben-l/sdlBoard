@@ -1,24 +1,29 @@
 #pragma once
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #include <iostream>
-#include "Board.h"
 
 namespace Chess {
-    class Window : public Board {
+    class Window {
         public:
-            SDL_Event m_Event;
-            SDL_Window* m_Window;
-            SDL_Surface* m_Screen;
-            const int GetHeight() { return m_Height; }
-            const int GetWidth() { return m_Width; }
-            Window();
+            SDL_Event Event;
+            SDL_Window* Window = NULL;
+            SDL_Surface* Surface;
+            SDL_Renderer* Renderer = NULL;
+            SDL_Texture* Texture = NULL;
+            int Height = 728;
+            int Width = 728;
+            //const int GetHeight() { return m_Height; }
+            //const int GetWidth() { return m_Width; }
+            void CreateWindow();
+            SDL_Texture* LoadTexture(std::string path);
+            bool LoadTextureImage(std::string path);
+            void ResizeWindow(int newWidth, int newHeight);
             ~Window();
         private:
-            int m_Height = 720;
-            int m_Width = 720;
             int SetRGBA(int r, int g, int b, int a)
             {
-                return SDL_MapRGBA(m_Screen->format, r, g, b, a); 
+                return SDL_MapRGBA(Surface->format, r, g, b, a); 
             }
     };
 }

@@ -1,7 +1,7 @@
 #pragma once
-#include <SDL.h>
+#include <SDL2/SDL.h>
 #include <iostream>
-#include "Window.h"
+#include "Board.h"
 
 namespace Chess {
     class Application : public Window {

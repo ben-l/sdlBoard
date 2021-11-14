@@ -11,10 +11,12 @@ namespace Chess {
                 SDL_Color Color = (x + y) % 2 == 0 ? m_Dark : m_Light;
 				m_Rect.x = x * BoxWidthX; 
 				m_Rect.y = y * BoxHeightY;
-                SDL_SetRenderDrawColor(m_Renderer, Color.r, Color.g, Color.b, Color.a);
-				SDL_RenderFillRect(m_Renderer, &m_Rect);
+                SDL_SetRenderDrawColor(Window::Renderer, Color.r, Color.g, Color.b, Color.a);
+				SDL_RenderFillRect(Window::Renderer, &m_Rect);
+                Window::LoadTextureImage("../assets/textures/r256.png");
+                SDL_RenderCopy(Window::Renderer, Window::Texture, NULL, &m_Rect);
             }
         }
-        SDL_RenderPresent(m_Renderer);
+        SDL_RenderPresent(Window::Renderer);
 	}
 }

@@ -1,18 +1,21 @@
 #pragma once
-#include <SDL.h>
+#include <SDL2/SDL.h>
+#include "Window.h"
 
 namespace Chess {
-    class Board {
+    class Board : public Window {
         public:
             void Render();
-            SDL_Renderer* m_Renderer;
+            void Resize();
+            int GetBoardHeight(){ return BoardYBoxes * BoxHeightY; }
+            int GetBoardWidth(){ return BoardXBoxes * BoxWidthX; }
         private:
-            SDL_Color m_Dark = {0,0,0,255};
-            SDL_Color m_Light = {255,255,255,255};
+            SDL_Color m_Dark = {93, 50, 49, 1};
+            SDL_Color m_Light = {121,72,57,1};
             SDL_Rect m_Rect;
             int BoardXBoxes = 8;
             int BoardYBoxes = 8;
-            int BoxWidthX = 720 / BoardXBoxes;
-            int BoxHeightY = 720 / BoardYBoxes;
+            int BoxWidthX = Window::Width / BoardXBoxes;
+            int BoxHeightY = Window::Height / BoardYBoxes;
     };
 }
