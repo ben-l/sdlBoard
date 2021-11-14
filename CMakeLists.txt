@@ -22,7 +22,10 @@ set(SOURCES
 		src/Window.cpp
 	)
 
+file(COPY assets DESTINATION ${CMAKE_BINARY_DIR})
+
 # Add an executable with the above sources
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE ${SDL2_LIBRARIES} ${SDL2_IMAGE_LIBRARIES})
+

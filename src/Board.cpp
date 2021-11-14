@@ -13,7 +13,7 @@ namespace Chess {
 				m_Rect.y = y * BoxHeightY;
                 SDL_SetRenderDrawColor(Window::Renderer, Color.r, Color.g, Color.b, Color.a);
 				SDL_RenderFillRect(Window::Renderer, &m_Rect);
-                Window::LoadTextureImage("../assets/textures/r256.png");
+                Window::LoadTextureImage("assets/textures/r256.png");
                 SDL_RenderCopy(Window::Renderer, Window::Texture, NULL, &m_Rect);
             }
         }
