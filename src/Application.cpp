@@ -5,6 +5,7 @@ namespace Chess {
 				SDL_Init(SDL_INIT_EVERYTHING);
                 Board game;
                 game.CreateWindow();
+				game.PrintAllBoards();
 				while(!quit){
                     game.Render();
 					while( SDL_WaitEvent( &Event ) ){
@@ -17,12 +18,6 @@ namespace Chess {
                                         break;
                                     case SDL_WINDOWEVENT_RESIZED:
 										game.Render();
-                                        int w = game.GetBoardWidth();
-                                        int h = game.GetBoardHeight();
-                                        int screen_w = game.Width;
-                                        int screen_h = game.Height;
-                                        std::cout << "board size, w: " << w << " x h: " << h << std::endl;
-                                        std::cout << "screen size, w: " << screen_w << " x h: " << screen_h << std::endl;
                                         break;
                                 }
 							case SDL_QUIT:

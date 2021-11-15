@@ -3,6 +3,16 @@
 #include <SDL2/SDL.h>
 
 namespace Chess {
+    enum types 
+    {
+        EMPTY, wP, wN, wB, wR, wQ, wK, bP, bN, bB, bR, bQ, bK
+    };
+
+
+    enum colours {
+        WHITE, BLACK, BOTH
+    };
+
     class Piece {
         public:
             Piece(std::string color, SDL_Texture* texture, float posx, float posy);
