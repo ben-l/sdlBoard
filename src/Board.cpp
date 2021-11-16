@@ -77,24 +77,35 @@ namespace Chess {
 		}
 	}
 
+	//https://stackoverflow.com/questions/30680559/how-to-find-magic-bitboards
+    int Board::PopBits(uint64_t *bb) {
+        uint64_t b = *bb ^ (*bb - 1);
+        unsigned int fold = (unsigned) ((b & 0xffffffff) ^ (b >> 32));
+        *bb &= (*bb - 1);
+        return BitTable[(fold * 0x783a9b23) >> 26];
+    }
+
+    int Board::CountBits(uint64_t b) {
+		int i;
+		for(i = 0; b; i++, b &= b - 1);
+		return i;
+	}
+
 
 	void Board::PrintAllBoards(){
 		Init120SqTo64();
 		Print120Sq();
-
-		std::cout << "Bit Board:" << std::endl;
-		PrintBitBoard(m_BitBoard);
-		std::cout << "m_BitBoard: " << m_BitBoard << std::endl;
-
+		
 		m_BitBoard |= (1ULL << m_Sq120To64[D2]);
-		std::cout << "D2 Added" << std::endl;
-		PrintBitBoard(m_BitBoard);
+		m_BitBoard |= (1ULL << m_Sq120To64[D3]);
+		m_BitBoard |= (1ULL << m_Sq120To64[D4]);
 
-		/*
-		m_BitBoard |= (1ULL << m_Sq120To64[G2]);
-		std::cout << "G2 Added" << std::endl;
 		PrintBitBoard(m_BitBoard);
-		*/
+		while(m_BitBoard){
+			m_Sq64 = PopBits(&m_BitBoard);
+			std::cout << "popped: " << m_Sq64 << std::endl;
+			PrintBitBoard(m_BitBoard);
+		}
 	}
 
 }
