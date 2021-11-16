@@ -57,15 +57,18 @@ namespace Chess {
             // they need to be able to talk to each other
         private:
             uint64_t m_ShiftMe = 1ULL;
+		    uint64_t m_BitBoard = 0ULL; 
+		    uint64_t m_SetMask[64];
+		    uint64_t m_ClearMask[64];
             int m_File;
             int m_Rank;
             int m_Sq = 0;
             int m_Sq64 = 0;
-		    uint64_t m_BitBoard = 0ULL; 
             void Init120SqTo64();
             void Print120Sq();
             void PrintBitBoard(uint64_t bb);
             int PopBits(uint64_t *bb);
             int CountBits(uint64_t b);
+            void InitBitMasks();
         };
 }

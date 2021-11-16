@@ -24,3 +24,7 @@
 
 // returns 120 array based number for the out of bounds board
 #define FR2SQ(file, rank) ( (21 + (file) ) + ( (rank) * 10 ))
+
+// Bit Masks
+#define SETBIT(bb, m_Sq) ((bb) |= m_SetMask[(m_Sq)])
+#define CLEARBIT(bb, m_Sq) ((bb) &= m_ClearMask[(m_Sq)])

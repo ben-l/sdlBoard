@@ -91,11 +91,24 @@ namespace Chess {
 		return i;
 	}
 
+    void Board::InitBitMasks(){
+
+        for(int i = 0; i < 64; i++){
+            m_SetMask[i] = 0ULL;
+            m_ClearMask[i]  = 0ULL;
+        }
+
+        for(int i = 0; i < 64; i++){
+            m_SetMask[i] |= (1ULL << i);
+            m_ClearMask[i] = ~m_SetMask[i];
+        }
+    }
 
 	void Board::PrintAllBoards(){
 		Init120SqTo64();
 		Print120Sq();
 		
+        /*
 		m_BitBoard |= (1ULL << m_Sq120To64[D2]);
 		m_BitBoard |= (1ULL << m_Sq120To64[D3]);
 		m_BitBoard |= (1ULL << m_Sq120To64[D4]);
@@ -105,7 +118,12 @@ namespace Chess {
 			m_Sq64 = PopBits(&m_BitBoard);
 			std::cout << "popped: " << m_Sq64 << std::endl;
 			PrintBitBoard(m_BitBoard);
-		}
+        }
+        */
+        InitBitMasks();
+        SETBIT(m_BitBoard, 61);
+        PrintBitBoard(m_BitBoard);
 	}
+
 
 }
